@@ -14,7 +14,7 @@ const registerUser = async (req, res) => {
     const newUser = new User({
       name,
       email,
-      password: hashedPassword, // Ensure it is hashed
+      password: hashedPassword,
     });
 
     await newUser.save();
