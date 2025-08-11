@@ -1,6 +1,8 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
+  const navigate = useNavigate();
   const [form, setForm] = useState({ email: "", password: "" });
   const [isLoading, setIsLoading] = useState(false);
 
@@ -8,6 +10,9 @@ export default function Login() {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
+  const hanleNavigate = async () => {
+    navigate("/signup");
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
@@ -30,7 +35,7 @@ export default function Login() {
 
       localStorage.setItem("token", data.token);
 
-      alert("Login successful!");
+      navigate("/blogs");
     } catch (err) {
       alert(err.message || "Error logging in");
     } finally {
@@ -194,7 +199,10 @@ export default function Login() {
             <div className="mt-8 text-center">
               <p className="text-gray-400 text-sm">
                 Don't have an account?{" "}
-                <button className="text-purple-400 hover:text-purple-300 transition-colors font-medium">
+                <button
+                  onClick={hanleNavigate}
+                  className="text-purple-400 hover:text-purple-300 transition-colors font-medium"
+                >
                   Sign up here
                 </button>
               </p>

@@ -6,7 +6,12 @@ const blogRoutes = require("./routes/blogRoutes");
 const categoryRoutes = require("./routes/categoryRoutes");
 const commentRoutes = require("./routes/commentRoutes");
 const app = express();
-app.use(cors());
+const corsOptions = {
+  origin: "http://localhost:3000",
+  credentials: true,
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
 connectDB();
 app.use("/api/auth", authRoutes);
